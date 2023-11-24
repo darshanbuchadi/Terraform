@@ -1,0 +1,14 @@
+provider "aws" {
+        region = "us-east-2"
+        access_key = "AKIAUPFWVNPX6WRBHBFI"
+        secret_key = "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"
+}
+
+resource "aws_instance" "assignment-1" {
+        ami = "ami-0e83be366243f524a"
+        instance_type = "t2.micro"
+        key_name = "da" 
+        tags = { 
+        name = "assignment-1"
+        }
+}

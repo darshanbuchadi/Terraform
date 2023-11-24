@@ -1,0 +1,31 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+provider "aws" {
+        region = "us-east-2"
+        access_key = "AKIAUPFWVNPX6WRBHBFI"
+        secret_key = "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"
+}
+
+resource "aws_instance" "assignment-2" {
+        ami = "ami-07b36ea9852e986ad"
+        instance_type = "t2.micro"
+        key_name = "da" 
+        tags = { 
+        name = "assignment-2"
+        }
+}
+resource "aws_eip" "eip" {
+  vpc = true
+
+}
+resource "aws_eip_association" "eip_assoc" {
+  instance_id = aws_instance.assignment-2.id
+  allocation_id = aws_eip.eip.id
+}
